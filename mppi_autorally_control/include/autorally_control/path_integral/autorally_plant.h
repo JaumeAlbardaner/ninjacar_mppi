@@ -37,13 +37,13 @@
 #include "param_getter.h"
 
 #include <autorally_control/ddp/util.h>
-#include <autorally_msgs/chassisCommand.h>
-#include <autorally_msgs/chassisState.h>
-#include <autorally_msgs/runstop.h>
-#include <autorally_msgs/pathIntegralStatus.h>
-#include <autorally_msgs/pathIntegralTiming.h>
-#include <autorally_msgs/neuralNetModel.h>
-#include <autorally_control/PathIntegralParamsConfig.h>
+#include <mppi_autorally_msgs/chassisCommand.h>
+#include <mppi_autorally_msgs/chassisState.h>
+#include <mppi_autorally_msgs/runstop.h>
+#include <mppi_autorally_msgs/pathIntegralStatus.h>
+#include <mppi_autorally_msgs/pathIntegralTiming.h>
+#include <mppi_autorally_msgs/neuralNetModel.h>
+#include <mppi_autorally_control/PathIntegralParamsConfig.h>
 
 #include <ros/ros.h>
 #include <dynamic_reconfigure/server.h>
@@ -151,16 +151,16 @@ public:
   /**
   * @brief Callback for recording the current servo input.
   */
-  void servoCall(autorally_msgs::chassisState servo_msg);
+  void servoCall(mppi_autorally_msgs::chassisState servo_msg);
 
   bool hasNewModel();
-  virtual void modelCall(autorally_msgs::neuralNetModel model_msg);
+  virtual void modelCall(mppi_autorally_msgs::neuralNetModel model_msg);
   virtual void getModel(std::vector<int> &description, std::vector<float> &data);
 
   /**
   * @brief Callback for safe speed subscriber.
   */
-	void runstopCall(autorally_msgs::runstop safe_msg);
+	void runstopCall(mppi_autorally_msgs::runstop safe_msg);
 
   /**
   * @brief Publishes the controller's nominal path.
@@ -209,11 +209,11 @@ public:
   */
   int checkStatus();
 
-  void dynRcfgCall(autorally_control::PathIntegralParamsConfig &config, int lvl);
+  void dynRcfgCall(mppi_autorally_control::PathIntegralParamsConfig &config, int lvl);
 
   bool hasNewDynRcfg();
 
-  autorally_control::PathIntegralParamsConfig getDynRcfgParams();
+  mppi_autorally_control::PathIntegralParamsConfig getDynRcfgParams();
 
   virtual void displayDebugImage(const ros::TimerEvent&);
 
@@ -232,8 +232,8 @@ protected:
   std::atomic<bool> receivedDebugImg_;
   std::atomic<bool> debugShutdownSignal_;
   std::atomic<bool> debugShutdownSignalAcknowledged_;
-  autorally_msgs::neuralNetModel dynamicsModel_;
-  autorally_control::PathIntegralParamsConfig costParams_;
+  mppi_autorally_msgs::neuralNetModel dynamicsModel_;
+  mppi_autorally_control::PathIntegralParamsConfig costParams_;
   bool hasNewCostParams_ = false;
 
   const double TIMEOUT = 0.5; ///< Time before declaring pose/controls stale.
@@ -251,7 +251,7 @@ protected:
 
   ros::Time last_pose_call_; ///< Timestamp of the last pose callback.
 
-  ros::Publisher control_pub_; ///< Publisher of autorally_msgs::chassisCommand type on topic servoCommand.
+  ros::Publisher control_pub_; ///< Publisher of mppi_autorally_msgs::chassisCommand type on topic servoCommand.
   ros::Publisher status_pub_; ///< Publishes the status (0 good, 1 neutral, 2 bad) of the controller
   ros::Publisher subscribed_pose_pub_; ///< Publisher of the subscribed pose
   ros::Publisher path_pub_; ///< Publisher of nav_mags::Path on topic nominalPath.
@@ -266,8 +266,8 @@ protected:
 
   nav_msgs::Path path_msg_; ///< Path message for publishing the planned path.
   geometry_msgs::Point time_delay_msg_; ///< Point message for publishing the observed delay.
-  autorally_msgs::pathIntegralStatus status_msg_; ///<pathIntegralStatus message for publishing mppi status
-  autorally_msgs::pathIntegralTiming timingData_; ///<pathIntegralStatus message for publishing mppi status
+  mppi_autorally_msgs::pathIntegralStatus status_msg_; ///<pathIntegralStatus message for publishing mppi status
+  mppi_autorally_msgs::pathIntegralTiming timingData_; ///<pathIntegralStatus message for publishing mppi status
 };
 
 }
