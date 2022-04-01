@@ -26,19 +26,21 @@ The tools contained within this repository have been used to implement an [MPPI]
 
     * __Install CNPY__
         ```
-        mkdir ~/tmp && cd ~/tmp
+        mkdir ~/tmp ; cd ~/tmp
         git clone git@github.com:rogersce/cnpy.git
-        cd cnpy && mkdir build && cd build && cmake ..
+        cd cnpy && mkdir build ; cd build && cmake ..
+        make
         sudo make install
         ```
 
     * __Install gtsam__
 
         ```
-        mkdir ~/tmp && cd ~/tmp
+        mkdir ~/tmp ; cd ~/tmp
         git clone git@github.com:borglab/gtsam.git
         cd gtsam && mkdir build && cd build
         cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=ON -DGTSAM_WITH_EIGEN_MKL=OFF .. 
+        make
         sudo make install
         ```
 
