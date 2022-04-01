@@ -26,7 +26,7 @@ The tools contained within this repository have been used to implement an [MPPI]
 
     * __Install CNPY__
         ```
-        mkdir ~/tmp ; cd ~/tmp
+        mkdir -p ~/tmp ; cd ~/tmp
         git clone git@github.com:rogersce/cnpy.git
         cd cnpy && mkdir build ; cd build && cmake ..
         make
@@ -36,7 +36,7 @@ The tools contained within this repository have been used to implement an [MPPI]
     * __Install gtsam__
 
         ```
-        mkdir ~/tmp ; cd ~/tmp
+        mkdir -p ~/tmp ; cd ~/tmp
         git clone git@github.com:borglab/gtsam.git
         cd gtsam && mkdir build && cd build
         cmake -DGTSAM_INSTALL_GEOGRAPHICLIB=ON -DGTSAM_WITH_EIGEN_MKL=OFF .. 
@@ -73,7 +73,14 @@ Get the autorally repository in a [catkin workspace](http://wiki.ros.org/catkin/
     ```
     pkg-config --modversion eigen3
     ```
-    If you don't have at least version 3.3.5, [upgrade Eigen](https://github.com/eigenteam/eigen-git-mirror).
+    If you don't have at least version 3.3.5, update it:
+    ```
+    mkdir -p ~/tmp ; cd ~/tmp
+    git clone git@github.com:eigenteam/eigen-git-mirror.git
+    cd eigen-git-mirror && mkdir build && cd build
+    cmake .. 
+    sudo make install
+    ```
 
 ### 3. Run MPPI controller
 
