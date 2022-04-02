@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(mppi_autorally_msgs)
+project(autorally_msgs)
 
 find_package(catkin REQUIRED COMPONENTS
   genmsg

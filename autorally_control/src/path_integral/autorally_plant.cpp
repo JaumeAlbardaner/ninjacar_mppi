@@ -52,11 +52,11 @@ AutorallyPlant::AutorallyPlant(ros::NodeHandle global_node, ros::NodeHandle mppi
   stateSequence_.resize(AUTORALLY_STATE_DIM*numTimesteps_);
 
   //Initialize the publishers.
-  control_pub_ = mppi_node.advertise<mppi_autorally_msgs::chassisCommand>("chassisCommand", 1);
+  control_pub_ = mppi_node.advertise<autorally_msgs::chassisCommand>("chassisCommand", 1);
   path_pub_ = mppi_node.advertise<nav_msgs::Path>("nominalPath", 1);
   subscribed_pose_pub_ = mppi_node.advertise<nav_msgs::Odometry>("subscribedPose", 1);
-  status_pub_ = mppi_node.advertise<mppi_autorally_msgs::pathIntegralStatus>("mppiStatus", 1);
-  timing_data_pub_ = mppi_node.advertise<mppi_autorally_msgs::pathIntegralTiming>("timingInfo", 1);
+  status_pub_ = mppi_node.advertise<autorally_msgs::pathIntegralStatus>("mppiStatus", 1);
+  timing_data_pub_ = mppi_node.advertise<autorally_msgs::pathIntegralTiming>("timingInfo", 1);
   
   //Initialize the subscribers.
   pose_sub_ = global_node.subscribe(pose_estimate_name, 1, &AutorallyPlant::poseCall, this,
@@ -247,14 +247,14 @@ void AutorallyPlant::poseCall(nav_msgs::Odometry pose_msg)
   }
 }
 
-void AutorallyPlant::servoCall(mppi_autorally_msgs::chassisState servo_msg)
+void AutorallyPlant::servoCall(autorally_msgs::chassisState servo_msg)
 {
   boost::mutex::scoped_lock lock(access_guard_);
   full_state_.steering = servo_msg.steering;
   full_state_.throttle = servo_msg.throttle;
 }
 
-void AutorallyPlant::modelCall(mppi_autorally_msgs::neuralNetModel model_msg)
+void AutorallyPlant::modelCall(autorally_msgs::neuralNetModel model_msg)
 {
   boost::mutex::scoped_lock lock(access_guard_);
   new_model_available_ = true;
@@ -295,7 +295,7 @@ void AutorallyPlant::getModel(std::vector<int> &description, std::vector<float> 
   new_model_available_ = false;
 }
 
-void AutorallyPlant::runstopCall(mppi_autorally_msgs::runstop safe_msg)
+void AutorallyPlant::runstopCall(autorally_msgs::runstop safe_msg)
 {
   boost::mutex::scoped_lock lock(access_guard_);
   if (safe_msg.motionEnabled == false){
@@ -347,7 +347,7 @@ void AutorallyPlant::pubPath(const ros::TimerEvent&)
 
 void AutorallyPlant::pubControl(float steering, float throttle)
 {
-  mppi_autorally_msgs::chassisCommand control_msg; ///< Autorally control message initialization.
+  autorally_msgs::chassisCommand control_msg; ///< Autorally control message initialization.
   //Publish the steering and throttle commands
   if (std::isnan(throttle) || std::isnan(steering)){ //Nan control publish zeros and exit.
     ROS_INFO("NaN Control Input Detected");
@@ -413,7 +413,7 @@ int AutorallyPlant::checkStatus()
   return status_;
 }
 
-void AutorallyPlant::dynRcfgCall(mppi_autorally_control::PathIntegralParamsConfig &config, int lvl)
+void AutorallyPlant::dynRcfgCall(autorally_control::PathIntegralParamsConfig &config, int lvl)
 {
   boost::mutex::scoped_lock lock(access_guard_);
   costParams_.desired_speed = config.desired_speed;
@@ -434,7 +434,7 @@ bool AutorallyPlant::hasNewDynRcfg()
   return hasNewCostParams_;
 }
 
-mppi_autorally_control::PathIntegralParamsConfig AutorallyPlant::getDynRcfgParams()
+autorally_control::PathIntegralParamsConfig AutorallyPlant::getDynRcfgParams()
 {
   boost::mutex::scoped_lock lock(access_guard_);
   hasNewCostParams_ = false;
@@ -455,4 +455,4 @@ void AutorallyPlant::shutdown()
   //server_.clearCallback();
 }
 
-} //namespace mppi_autorally_control
+} //namespace autorally_control

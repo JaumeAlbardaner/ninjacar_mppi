@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.8)
-project(mppi_autorally_control)
+project(autorally_control)
 
 find_package(catkin REQUIRED COMPONENTS
-  mppi_autorally_msgs
+  autorally_msgs
   cmake_modules
   dynamic_reconfigure
   geometry_msgs
@@ -25,7 +25,7 @@ generate_dynamic_reconfigure_options(cfg/gpsWaypoint_params.cfg
 
 catkin_package(
   DEPENDS Boost
-  CATKIN_DEPENDS roscpp std_msgs geometry_msgs nav_msgs nodelet dynamic_reconfigure mppi_autorally_msgs
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs nav_msgs nodelet dynamic_reconfigure autorally_msgs
   INCLUDE_DIRS include
   LIBRARIES autorally_plant param_getter
 )
