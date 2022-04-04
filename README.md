@@ -94,7 +94,7 @@ Get the autorally repository in a [catkin workspace](http://wiki.ros.org/catkin/
     ```
 3. __Instantiate a required variable__
     ```
-    export AR_MPPI_PARAMS_PATH=`rospack find mppi_autorally_control`/src/path_integral/params/
+    export AR_MPPI_PARAMS_PATH=`rospack find autorally_control`/src/path_integral/params/
     ```
 4. __Connect to the VRPN server__
     ```
@@ -102,5 +102,5 @@ Get the autorally repository in a [catkin workspace](http://wiki.ros.org/catkin/
     ```
 5. __Run the MPPI controller__
     ```
-    roslaunch mppi_autorally_control path_integral_nn.launch
+    roslaunch autorally_control path_integral_nn.launch
     ```
