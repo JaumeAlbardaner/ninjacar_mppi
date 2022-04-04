@@ -38,32 +38,12 @@
 #include <ros/ros.h>
 #include <stdlib.h>
 #include <autorally_msgs/pathIntegralStatus.h>
-//#include <autorally_core/Diagnostics.h>
+
 
 namespace autorally_control {
-/*
-class StatusMonitor : public Diagnostics
-{
 
-public: 
 
-	const double TIMEOUT = 0.5;
 
-	StatusMonitor(ros::NodeHandle nh);
-
-	void statusCallback(autorally_msgs::pathIntegralStatus msg); 
-
-	void diagnosticStatus(const ros::TimerEvent& time);
-
-private:
-
-	ros::Time last_status_;
-	std::string info_;
-	int status_;
-	ros::Subscriber status_sub_;
-
-};
-*/
 }
 
 #endif /*MPPI_STATUS_MONITOR_*/

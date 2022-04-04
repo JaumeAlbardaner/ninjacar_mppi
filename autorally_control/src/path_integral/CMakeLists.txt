@@ -41,7 +41,7 @@ if(CUDA_FOUND)
                       param_getter
                       )
   target_compile_definitions(path_integral_bf PRIVATE PRIVATE USE_BASIS_FUNC_MODEL__)
-  add_dependencies(path_integral_bf  ${PROJECT_NAME}_gencfg)
+  add_dependencies(path_integral_bf autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
 
   target_link_libraries(path_integral_bf /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
@@ -56,7 +56,7 @@ if(CUDA_FOUND)
   target_compile_definitions(mppi_nodelet PRIVATE
           USE_NEURAL_NETWORK_MODEL__;
           MPPI_NNET_USING_CONSTANT_MEM__)
-  add_dependencies(mppi_nodelet  ${PROJECT_NAME}_gencfg)
+  add_dependencies(mppi_nodelet autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
   target_link_libraries(mppi_nodelet /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
   cuda_add_executable(path_integral_nn
@@ -67,7 +67,7 @@ if(CUDA_FOUND)
   target_compile_definitions(path_integral_nn PRIVATE
           USE_NEURAL_NETWORK_MODEL__;
           MPPI_NNET_USING_CONSTANT_MEM__)
-  add_dependencies(path_integral_nn  ${PROJECT_NAME}_gencfg)
+  add_dependencies(path_integral_nn autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
 
   target_link_libraries(path_integral_nn /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
@@ -77,6 +77,7 @@ if(CUDA_FOUND)
 
   add_executable(path_integral_monitor
                  status_monitor.cpp)
+  add_dependencies(path_integral_monitor autorally_msgs_gencpp)
   target_link_libraries(path_integral_monitor ${catkin_LIBRARIES})
 
 endif(CUDA_FOUND)

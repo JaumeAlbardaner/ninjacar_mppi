@@ -34,40 +34,7 @@
 #include <autorally_control/path_integral/status_monitor.h>
 
 namespace autorally_control {
-/*
-StatusMonitor::StatusMonitor(ros::NodeHandle nh)
-{
-	last_status_ = ros::Time::now();
-	status_sub_ = nh.subscribe("/mppi_controller/mppiStatus", 1, &StatusMonitor::statusCallback, this);
-	std::string info = "MPPI Controller";
-	std::string hardwareID = "none";
-	std::string portPath = "";
-	Diagnostics::init(info, hardwareID, portPath);
-}
 
-void StatusMonitor::statusCallback(autorally_msgs::pathIntegralStatus msg)
-{
-	info_ = msg.info;
-	status_ = msg.status;
-	last_status_ = ros::Time::now();
-}
-
-void StatusMonitor::diagnosticStatus(const ros::TimerEvent& time)
-{
-	if ((double)ros::Time::now().toSec() - (double)last_status_.toSec() > TIMEOUT){
-		diag_error("CONTROLLER TIMEOUT");
-	}
-	else if (status_ == 0){
-		diag_ok(info_);
-	}
-	else if (status_ == 1){
-		diag_warn(info_);
-	}
-	else if (status_ == 2){
-		diag_error(info_);
-	}
-}
-*/
 }
 
 using namespace autorally_control;
@@ -76,6 +43,5 @@ int main(int argc, char** argv)
 {
 	ros::init(argc, argv, "mppiStatusMonitor");
 	ros::NodeHandle status_node("~");
-	//StatusMonitor monitor(status_node);
 	ros::spin();
 }
