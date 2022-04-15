@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
+  drive_control
 )
 
 find_package(Boost 1.55.0 REQUIRED)
@@ -25,7 +26,7 @@ generate_dynamic_reconfigure_options(cfg/gpsWaypoint_params.cfg
 
 catkin_package(
   DEPENDS Boost
-  CATKIN_DEPENDS roscpp std_msgs geometry_msgs nav_msgs nodelet dynamic_reconfigure autorally_msgs
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs nav_msgs nodelet dynamic_reconfigure autorally_msgs drive_control
   INCLUDE_DIRS include
   LIBRARIES autorally_plant param_getter
 )

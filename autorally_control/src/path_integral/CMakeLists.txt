@@ -31,33 +31,33 @@ if(CUDA_FOUND)
       -w
   )
 
-  ####################################################################################
-  #Executable for the basis function model
-  ####################################################################################
+#   ####################################################################################
+#   #Executable for the basis function model
+#   ####################################################################################
 
-  cuda_add_executable(path_integral_bf
-                      path_integral_main.cu
-                      autorally_plant
-                      param_getter
-                      )
-  target_compile_definitions(path_integral_bf PRIVATE PRIVATE USE_BASIS_FUNC_MODEL__)
-  add_dependencies(path_integral_bf autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
+#   cuda_add_executable(path_integral_bf
+#                       path_integral_main.cu
+#                       autorally_plant
+#                       param_getter
+#                       )
+#   target_compile_definitions(path_integral_bf PRIVATE PRIVATE USE_BASIS_FUNC_MODEL__)
+#   add_dependencies(path_integral_bf autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
 
-  target_link_libraries(path_integral_bf /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+#   target_link_libraries(path_integral_bf /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
   ###################################################################################
   #Executable for the neural network model
   ###################################################################################
 
-  cuda_add_library(mppi_nodelet
-                   mppi_nodelet.cu
-                   autorally_plant
-                   param_getter)
-  target_compile_definitions(mppi_nodelet PRIVATE
-          USE_NEURAL_NETWORK_MODEL__;
-          MPPI_NNET_USING_CONSTANT_MEM__)
-  add_dependencies(mppi_nodelet autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
-  target_link_libraries(mppi_nodelet /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+#   cuda_add_library(mppi_nodelet
+#                    mppi_nodelet.cu
+#                    autorally_plant
+#                    param_getter)
+#   target_compile_definitions(mppi_nodelet PRIVATE
+#           USE_NEURAL_NETWORK_MODEL__;
+#           MPPI_NNET_USING_CONSTANT_MEM__)
+#   add_dependencies(mppi_nodelet autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
+#   target_link_libraries(mppi_nodelet /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
   cuda_add_executable(path_integral_nn
                       path_integral_main.cu
@@ -75,9 +75,9 @@ if(CUDA_FOUND)
   #Executable for monitoring the status of mppi
   ####################################################################################
 
-  add_executable(path_integral_monitor
-                 status_monitor.cpp)
-  add_dependencies(path_integral_monitor autorally_msgs_gencpp)
-  target_link_libraries(path_integral_monitor ${catkin_LIBRARIES})
+#   add_executable(path_integral_monitor
+#                  status_monitor.cpp)
+#   add_dependencies(path_integral_monitor autorally_msgs_gencpp)
+#   target_link_libraries(path_integral_monitor ${catkin_LIBRARIES})
 
 endif(CUDA_FOUND)

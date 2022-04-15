@@ -44,7 +44,7 @@
 
     <!-- Cost Parameters -->
     <param name="l1_cost" value="false" />
-    <param name="desired_speed" value="6.0" />
+    <param name="desired_speed" value="1.0" />
     <param name="speed_coefficient" value="4.25" />
     <param name="track_coefficient" value="200.0" />
     <param name="max_slip_angle" value="1.25" />
@@ -59,7 +59,12 @@
 
   </node>
 
-  <node
+  <node name="command_republisher" pkg="mppi_autorally_control"
+        type="command_republisher.py" output="screen">
+  </node>
+
+
+  <!-- <node
     pkg = "autorally_control" 
     type = "path_integral_monitor" 
     name = "mppi_monitor"
@@ -73,6 +78,6 @@
     output = "screen">
     <param name="controller_type" value="mppi_controller" />
     <param name="tag" value="Neural Network Model - Path Integral"/> 
-  </node>
+  </node> -->
 
 </launch>

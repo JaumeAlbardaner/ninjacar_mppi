@@ -41,6 +41,8 @@
   <build_depend>autorally_msgs</build_depend>
   <build_depend>cmake_modules</build_depend>
   <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>drive_control</build_depend>
+
 
   <run_depend>roscpp</run_depend>
   <run_depend>message_runtime</run_depend>
@@ -52,6 +54,9 @@
   <run_depend>tf</run_depend>
   <run_depend>autorally_msgs</run_depend>
   <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>drive_control</run_depend>
+
+  
 
 
   <export>
