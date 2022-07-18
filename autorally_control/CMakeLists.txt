@@ -18,7 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost 1.55.0 REQUIRED)
 find_package(Eigen3 REQUIRED)
 
-set(BUILD_FLAGS "-std=c++11 -Wuninitialized")
+set(BUILD_FLAGS "-std=c++17 -Wuninitialized")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BUILD_FLAGS}")
 
 generate_dynamic_reconfigure_options(cfg/gpsWaypoint_params.cfg

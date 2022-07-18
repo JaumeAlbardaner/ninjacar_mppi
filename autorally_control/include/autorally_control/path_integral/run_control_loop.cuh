@@ -153,6 +153,7 @@ void runControlLoop(CONTROLLER_T* controller, AutorallyPlant* robot, SystemParam
     if (use_feedback_gains){
       controller->computeFeedbackGains(state);
     }
+
     controlSolution = controller->getControlSeq();
     stateSolution = controller->getStateSeq();
     auto result = controller->getFeedbackGains();
@@ -170,6 +171,7 @@ void runControlLoop(CONTROLLER_T* controller, AutorallyPlant* robot, SystemParam
         controller->model_->updateState(state, u); 
       }
     }
+
     
     //Sleep for any leftover time in the control loop
     std::chrono::duration<double, std::milli> fp_ms = std::chrono::steady_clock::now() - loop_start;

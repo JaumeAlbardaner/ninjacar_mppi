@@ -27,8 +27,8 @@ void MPPI<CONTROLLER_T, DYNAMICS_T, COSTS_T>::onInit()
     costs = new COSTS_T(mppi_node);
 
     //Define the internal dynamics model for mppi
-    control_constraints[0] = make_float2(-.99, .99);
-    control_constraints[1] = make_float2(-.99, params.max_throttle);
+    control_constraints[0] = make_float2(params.min_steering, params.max_steering);
+    control_constraints[1] = make_float2(params.min_throttle, params.max_throttle);
     model = new DYNAMICS_T(1.0/params.hz, control_constraints);
     model->loadParams(params.model_path); //Load the model parameters from the launch file specified path
 

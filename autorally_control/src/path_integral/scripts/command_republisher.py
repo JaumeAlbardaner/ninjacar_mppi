@@ -19,14 +19,19 @@ class CommandRepublisher(object):
   def __init__(self, namespace='command_republisher'):
     """Initialize this _command_republisher"""
     rospy.init_node("command_republisher", anonymous = True)
-    self.pub = rospy.Publisher("/computedCommand", DriveCommand, queue_size = 1)
+    self.ex_throttle = 0 
+    self.pub = rospy.Publisher("/planner_command", DriveCommand, queue_size = 1)
     self.sub = rospy.Subscriber("/mppi_controller/chassisCommand", chassisCommand, self.handle_pose)
   
   def handle_pose(self, message):
     msg = DriveCommand()
     msg.rear_steer_angle = 0
-    msg.front_Steer_angle = message.steering
-    msg.speed = message.throttle 
+    msg.front_steer_angle = message.steering
+    if message.throttle <0:
+      msg.control_value = 0.2
+    else:
+      msg.control_value = 0.2 
+      self.ex_throttle = message.throttle 
 
     self.pub.publish(msg)
 
