@@ -4,6 +4,7 @@ The tools contained within this repository have been used to implement an [MPPI]
 
 A [Notion website](https://www.notion.so/MPPI-Code-Walkthrough-d6f159b261fa48db9d41d51e2ba90466) was developed to gain a deeper understanding on how the algorithm is structured in CUDA language.
 
+[](https://github.com/JaumeAlbardaner/ninjacar_mppi/blob/master/gif/ninjacar.gif)
 ## Setup Instructions
 
 ### Contents
