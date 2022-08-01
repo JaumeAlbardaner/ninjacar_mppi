@@ -28,9 +28,9 @@ class CommandRepublisher(object):
     msg.rear_steer_angle = 0
     msg.front_steer_angle = message.steering
     if message.throttle <0:
-      msg.control_value = 0.2
+      msg.control_value = self.ex_throttle
     else:
-      msg.control_value = 0.2 
+      msg.control_value = message.throttle 
       self.ex_throttle = message.throttle 
 
     self.pub.publish(msg)
