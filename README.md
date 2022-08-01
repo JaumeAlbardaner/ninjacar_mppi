@@ -144,3 +144,5 @@ Get the autorally repository in a [catkin workspace](http://wiki.ros.org/catkin/
 4.  When the `path_integral_bf.launch` is called, the variable _use_feedback_gains_ __must__ be set to false. The DDP algorithm does not work properly when the pose messages are not given consistently, which does not hold true in the motion capture space. 
 
 5. The republisher [command_rosbag.py](https://github.com/JaumeAlbardaner/ninjacar_mppi/blob/master/autorally_control/src/path_integral/scripts/command_rosbag.py) is to be called every time one wants to capture a rosbag to train a neural network using [mppi_trainer](https://github.com/JaumeAlbardaner/mppi_trainer).
+
+6. The costMap building tool is located in the [ninjacar_map](https://github.com/JaumeAlbardaner/ninjacar_map) repository.
