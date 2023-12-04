@@ -35,15 +35,15 @@ if(CUDA_FOUND)
 #   #Executable for the basis function model
 #   ####################################################################################
 
-#   cuda_add_executable(path_integral_bf
-#                       path_integral_main.cu
-#                       autorally_plant
-#                       param_getter
-#                       )
-#   target_compile_definitions(path_integral_bf PRIVATE PRIVATE USE_BASIS_FUNC_MODEL__)
-#   add_dependencies(path_integral_bf autorally_msgs_gencpp ${PROJECT_NAME}_gencfg)
+  cuda_add_executable(path_integral_bf
+                      path_integral_main.cu
+                      autorally_plant
+                      param_getter
+                      )
+  target_compile_definitions(path_integral_bf PRIVATE PRIVATE USE_BASIS_FUNC_MODEL__)
+  add_dependencies(path_integral_bf ${PROJECT_NAME}_gencfg)
 
-#   target_link_libraries(path_integral_bf /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+  target_link_libraries(path_integral_bf /usr/local/lib/libcnpy.so ${CUDA_curand_LIBRARY} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
   ###################################################################################
   #Executable for the neural network model

@@ -56,6 +56,9 @@ typedef struct
   float steering_std;
   float throttle_std;
   float max_throttle;
+  float min_throttle;
+  float max_steering;
+  float min_steering;
   std::string model_path;
 } SystemParams;
 

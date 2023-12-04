@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
   MPPICosts* costs = new MPPICosts(mppi_node);
 
   //Define the internal dynamics model for mppi
-  float2 control_constraints[2] = {make_float2(-.99, .99), make_float2(-.99, params.max_throttle)};
+  float2 control_constraints[2] = {make_float2(params.min_steering, params.max_steering), make_float2(params.min_throttle, params.max_throttle)};
   DynamicsModel* model = new DynamicsModel(1.0/params.hz, control_constraints);
   model->loadParams(params.model_path); //Load the model parameters from the launch file specified path
 

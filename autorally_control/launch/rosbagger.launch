@@ -1,0 +1,9 @@
+<launch>
+
+  <node name="command_rosbag" pkg="autorally_control"
+        type="command_rosbag.py" output="screen">
+    <param name="throttle_scale" value="10"/>
+  </node>
+
+
+</launch>
